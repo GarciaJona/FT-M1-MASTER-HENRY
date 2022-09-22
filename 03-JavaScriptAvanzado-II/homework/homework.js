@@ -2,7 +2,13 @@
 
 // Closures
 
-function counter() {
+function counter(){
+var contador = 0;
+return function(){
+  contador++;
+  return contador
+  }
+}
   /*
   Ejercicio 1
 
@@ -19,9 +25,20 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
-}
 
-function cacheFunction(cb) {
+  function cacheFunction(cb){
+    var cache = {}
+    return function (propiedad) {
+     if(cache.hasOwnProperty(propiedad)){
+       return cache[propiedad]
+     }
+     else {
+       cache[propiedad] = cb(propiedad)
+       return cache[propiedad]
+     }
+    }
+  }
+
   /*
   Ejercicio 2
 
@@ -41,7 +58,7 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
-}
+
 
 // Bind
 
